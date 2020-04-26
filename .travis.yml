@@ -12,7 +12,6 @@ after_success:
   - docker build -t mahlebo/multi-server:latest ./server
   - docker build -t mahlebo/multi-worker:latest ./worker
   - echo "$DOCKER_PASSWORD" | docker login docker.io -u "$DOCKER_ID" --password-stdin
-
   - docker push mahlebo/multi-client:latest
   - docker push mahlebo/multi-nginx:latest
   - docker push mahlebo/multi-server:latest
