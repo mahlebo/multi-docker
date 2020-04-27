@@ -11,19 +11,19 @@ after_success:
   - docker build -t mahlebo/multi-nginx:latest ./nginx
   - docker build -t mahlebo/multi-server:latest ./server
   - docker build -t mahlebo/multi-worker:latest ./worker
-  - echo "$DOCKER_PASSWORD" | docker login docker.io -u "$DOCKER_ID" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push mahlebo/multi-client:latest
   - docker push mahlebo/multi-nginx:latest
   - docker push mahlebo/multi-server:latest
   - docker push mahlebo/multi-worker:latest
-deploy:
-  provider: elasticbeanstalk
-  region: us-east-2
-  app: multi-docker
-  env: MultiDocker-env
-  bucket_name: elasticbeanstalk-us-east-2-019158593745
-  bucket_path: docker-multi
-  on:
-    branch: master
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: $AWS_SECRET_KEY
+#deploy:
+#  provider: elasticbeanstalk
+#  region: us-east-2
+#  app: multi-docker
+#  env: MultiDocker-env
+#  bucket_name: elasticbeanstalk-us-east-2-019158593745
+#  bucket_path: docker-multi
+#  on:
+#    branch: master
+#  access_key_id: $AWS_ACCESS_KEY
+#  secret_access_key: $AWS_SECRET_KEY
